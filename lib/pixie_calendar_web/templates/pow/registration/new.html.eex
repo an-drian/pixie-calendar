@@ -1,0 +1,46 @@
+<div uk-grid>
+  <div class="uk-width-expand">
+    <div class="uk-card uk-card-default uk-card-body">
+      <h2 class="uk-h2">Register</h2>
+      <%= form_for @changeset, @action, [as: :user], fn f -> %>
+        <%= if @changeset.action do %>
+          <div class="uk-alert-danger" uk-alert>
+            <a class="uk-alert-close" uk-close></a>
+            <p>Oops, something went wrong! Please check the errors below.</p>
+          </div>
+        <% end %>
+
+        <%= label f, Pow.Ecto.Schema.user_id_field(@changeset), class: 'uk-form-label' %>
+        <div class="uk-form-controls">
+          <%= text_input f, Pow.Ecto.Schema.user_id_field(@changeset), class: 'uk-input' %>
+          <%= error_tag f, Pow.Ecto.Schema.user_id_field(@changeset) %>
+        </div>
+
+
+        <%= label f, :password, class: 'uk-form-label' %>
+        <div class="uk-form-controls">
+          <%= password_input f, :password, class: 'uk-input' %>
+          <%= error_tag f, :password %>
+        </div>
+
+        <%= label f, :confirm_password, class: 'uk-form-label' %>
+        <div class="uk-form-controls">
+          <%= password_input f, :confirm_password, class: 'uk-input' %>
+          <%= error_tag f, :confirm_password %>
+        </div>
+
+        <div class="uk-padding uk-padding-remove-left uk-padding-remove-right">
+          <div class="uk-flex uk-flex-right@l">
+            <%= link "Sign in", to: Routes.pow_session_path(@conn, :new), class: 'uk-button uk-button-default' %>
+            <%= submit "Register", class: 'uk-button uk-button-primary uk-margin-left' %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+
+
+
+<span></span>

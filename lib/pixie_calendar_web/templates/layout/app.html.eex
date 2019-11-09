@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>PixieCalendar · Phoenix Framework</title>
+    <link rel="stylesheet" href="<%= Routes.static_path(@conn, "/css/app.css") %>"/>
+  </head>
+  <body>
+    <header>
+      <nav class="uk-navbar-container" uk-navbar>
+        <div class="uk-navbar-left">
+          <ul class="uk-navbar-nav">
+            <li class="uk-active">
+              <a href="#">Home</a>
+            </li>
+          </ul>
+        </div>
+        <div class="uk-navbar-right">
+          <ul class="uk-navbar-nav">
+          <%= if @current_user do %>
+            <li class="uk-active">
+              <a href="#">
+                <%= @current_user.email %>
+              </a>
+              <div class="uk-navbar-dropdown">
+                <ul class="uk-nav uk-navbar-dropdown-nav">
+                  <li>
+                    <%= link "Sign out", to: Routes.pow_session_path(@conn, :delete), method: :delete, class: "nav-link"%>
+                  </li>
+                </ul>
+              </div>
+            </li>
+          <%= end %>
+          </ul>
+        </div>
+      </nav>
+    </header>
+    <main role="main" class="uk-container">
+    <%= if get_flash(@conn, :error) do %>
+      <div class="uk-alert-danger" uk-alert>
+        <a class="uk-alert-close" uk-close></a>
+        <p><%= get_flash(@conn, :error) %></p>
+      </div>
+    <%= end %>
+
+    <%= if get_flash(@conn, :info) do %>
+      <div class="uk-alert-primary" uk-alert>
+          <a class="uk-alert-close" uk-close></a>
+          <p><%= get_flash(@conn, :info) %></p>
+      </div>
+    <%= end %>
+
+
+      <%= render @view_module, @view_template, assigns %>
+    </main>
+    <script type="text/javascript" src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script>
+  </body>
+</html>
