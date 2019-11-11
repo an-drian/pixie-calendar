@@ -30,6 +30,11 @@ defmodule PixieCalendarWeb.Router do
     pipe_through [:browser, :protected]
 
     get "/", PageController, :index
+
+    resources "/employees", EmployeesController, only: [:index, :show, :create, :new] do
+      resources "/gaps", GapsController, only: [:index, :create, :new]
+    end
+
   end
 
   # Other scopes may use custom stacks.
