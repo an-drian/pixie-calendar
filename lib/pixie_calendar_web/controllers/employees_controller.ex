@@ -1,5 +1,6 @@
 defmodule PixieCalendarWeb.EmployeesController do
   use PixieCalendarWeb, :controller
+  alias PixieCalendar.Repo
 
   def index(conn, _params) do
     employees = PixieCalendar.list_employees_with_limit(5)
@@ -16,8 +17,19 @@ defmodule PixieCalendarWeb.EmployeesController do
       { :ok, _employee } -> redirect(conn, to: Routes.employees_path(conn, :index))
       { :error, new_employee_changeset } -> render(conn, "new.html", %{ new_employee_changeset: new_employee_changeset })
     end
+  end
 
-    |>
-    render(conn, "new.html")
+  def edit(conn, %{ "id" => id }) do
+    edit_employee_changeset = PixieCalendar.edit_employee(id)
+    render(conn, "edit.html", %{ edit_employee_changeset: edit_employee_changeset, id: id })
+  end
+
+  def update(conn, %{"id" => id, "employees" => employee_params }) do
+    employee = PixieCalendar.get_employee(id)
+
+    case PixieCalendar.update_employee(employee, employee_params) do
+      { :ok, _ } -> redirect(conn, to: Routes.employees_path(conn, :index))
+      { :error, edit_employee_changeset } -> render(conn, "edit.html", %{ edit_employee_changeset: edit_employee_changeset, id: id })
+    end
   end
 end

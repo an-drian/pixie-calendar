@@ -23,9 +23,10 @@
           <ul class="uk-navbar-nav">
           <%= if @current_user do %>
             <li class="uk-active">
-              <a href="#">
-                <%= @current_user.email %>
-              </a>
+              <%= link "Employees", to: Routes.employees_path(@conn, :index) %>
+            </li>
+            <li class="uk-active">
+              <a><%= @current_user.email %></a>
               <div class="uk-navbar-dropdown">
                 <ul class="uk-nav uk-navbar-dropdown-nav">
                   <li>

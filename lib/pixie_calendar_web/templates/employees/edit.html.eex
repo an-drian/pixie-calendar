@@ -1,0 +1,8 @@
+<div uk-grid>
+  <div class="uk-width-expand">
+    <div class="uk-card uk-card-default uk-card-body">
+      <h1 class="uk-heading-small">Edit Employee</h1>
+      <%= render("form.html", changeset: @edit_employee_changeset, action: Routes.employees_path(@conn, :update, @id), submit_label: "Edit")  %>
+    </div>
+  </div>
+</div>

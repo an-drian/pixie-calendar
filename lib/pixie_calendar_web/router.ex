@@ -31,7 +31,7 @@ defmodule PixieCalendarWeb.Router do
 
     get "/", PageController, :index
 
-    resources "/employees", EmployeesController, only: [:index, :show, :create, :new] do
+    resources "/employees", EmployeesController, only: [:index, :edit, :update, :create, :new] do
       resources "/gaps", GapsController, only: [:index, :create, :new]
     end
 

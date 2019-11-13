@@ -12,6 +12,21 @@ defmodule PixieCalendar do
 
   @repo Repo
 
+  def get_employee(id) do
+    @repo.get!(Employees, id)
+  end
+
+  def edit_employee(id) do
+    get_employee(id)
+    |> Employees.changeset()
+  end
+
+  def update_employee(%Employees{} = employee, update) do
+    employee
+    |> Employees.changeset(update)
+    |> @repo.update()
+  end
+
   def list_employees do
     @repo.all(Employees)
   end
