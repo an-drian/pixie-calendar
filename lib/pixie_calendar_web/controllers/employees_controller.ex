@@ -1,6 +1,5 @@
 defmodule PixieCalendarWeb.EmployeesController do
   use PixieCalendarWeb, :controller
-  alias PixieCalendar.Repo
 
   def index(conn, _params) do
     employees = PixieCalendar.list_employees_with_limit(5)

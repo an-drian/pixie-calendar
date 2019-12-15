@@ -45,5 +45,16 @@ defmodule PixieCalendar do
     |> @repo.insert()
   end
 
+  def insert_gap(attrs) do
+    %Gap{}
+    |> Gap.changeset(attrs)
+    |> @repo.insert()
+  end
+
+  def get_gaps_by() do
+
+  end
+
+  def new_gap,  do: Gap.changeset(%Gap{})
   def new_employee, do: Employees.changeset(%Employees{})
 end

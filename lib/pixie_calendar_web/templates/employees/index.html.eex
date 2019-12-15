@@ -22,9 +22,7 @@
               </td>
               <td>
                 <%= link "Edit", to: Routes.employees_path(@conn, :edit, e.id), class: "uk-button uk-button-default" %>
-                <button class="uk-button uk-button-primary">
-                  add gap
-                </button>
+                <%= link "Add gap", to: Routes.employees_gaps_path(@conn, :new, e.id), class: "uk-button uk-button-primary" %>
               </td>
             </tr>
           <% end %>

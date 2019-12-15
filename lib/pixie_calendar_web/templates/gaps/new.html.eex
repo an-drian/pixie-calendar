@@ -1,0 +1,48 @@
+<div uk-grid>
+  <div class="uk-width-expand">
+    <div class="uk-card uk-card-default uk-card-body">
+      <h1 class="uk-heading-small">Create gap for <%= @employee.name %></h1>
+      <%= form_for @gap, Routes.employees_gaps_path(@conn, :create, @employee.id), fn f -> %>
+        <%= if @gap.action do %>
+          <div class="uk-alert-danger" uk-alert>
+            <a class="uk-alert-close" uk-close></a>
+            <p>Oops, something went wrong! Please check the errors below.</p>
+          </div>
+        <% end %>
+        <div>
+          <%# cast(params, [:title, :reason, :start_date, :end_date, :employee_id, :user_id]) %>
+        </div>
+
+        <%= label f, :title, "Title", class: 'uk-form-label' %>
+        <div class="uk-form-controls">
+          <%= text_input f, :title, placeholder: "Type title here", class: 'uk-input' %>
+          <%= error_tag f, :title %>
+        </div>
+
+        <%= label f, :reason, "Gap reason", class: 'uk-form-label' %>
+        <div class="uk-form-controls">
+          <%= text_input f, :reason, placeholder: "Type title here", class: 'uk-input' %>
+          <%= error_tag f, :reason %>
+        </div>
+
+        <%= label f, :start_date, "Starts at:", class: 'uk-form-label' %>
+        <div class="uk-form-controls">
+          <%= date_select f, :start_date, default: current_date_touple %>
+          <%= error_tag f, :start_date %>
+        </div>
+        <%= label f, :end_date, "Ends at:", class: 'uk-form-label' %>
+        <div class="uk-form-controls">
+          <%= date_select f, :end_date, default: current_date_touple %>
+          <%= error_tag f, :end_date %>
+        </div>
+        <%=  hidden_input f, :user_id, value: @current_user.id %>
+        <%=  hidden_input f, :employees_id, value: @employee.id %>
+        <div class="uk-padding uk-padding-remove-left uk-padding-remove-right">
+          <div class="uk-flex uk-flex-right">
+            <%= submit "Create", class: 'uk-button uk-button-primary uk-margin-left' %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

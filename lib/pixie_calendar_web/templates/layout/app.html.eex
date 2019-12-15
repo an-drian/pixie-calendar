@@ -35,7 +35,7 @@
                 </ul>
               </div>
             </li>
-          <%= end %>
+          <% end %>
           </ul>
         </div>
       </nav>
@@ -46,14 +46,14 @@
         <a class="uk-alert-close" uk-close></a>
         <p><%= get_flash(@conn, :error) %></p>
       </div>
-    <%= end %>
+    <% end %>
 
     <%= if get_flash(@conn, :info) do %>
       <div class="uk-alert-primary" uk-alert>
           <a class="uk-alert-close" uk-close></a>
           <p><%= get_flash(@conn, :info) %></p>
       </div>
-    <%= end %>
+    <% end %>
 
 
       <%= render @view_module, @view_template, assigns %>
