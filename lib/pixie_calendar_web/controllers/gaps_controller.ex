@@ -2,7 +2,11 @@ defmodule PixieCalendarWeb.GapsController do
   use PixieCalendarWeb, :controller
 
   def index(conn, %{"employees_id" => employees_id}) do
-    render(conn, "index.html")
+    { int_id, _ } = Integer.parse(employees_id)
+    gaps = PixieCalendar.get_gaps_by_employee_id(int_id)
+
+    IO.inspect(gaps)
+    render(conn, "index.html", %{ gaps: gaps })
   end
 
   def new(conn, %{ "employees_id" => employees_id }) do

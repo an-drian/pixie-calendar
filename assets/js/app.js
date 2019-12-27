@@ -12,7 +12,13 @@ import css from "../css/app.styl"
 import "phoenix_html"
 // import "uikit/dist/css/uikit-core.css"
 // import "uikit/dist/css/uikit.css"
-import "uikit/dist/js/uikit.min"
+// import "uikit/dist/js/uikit.min"
+
+
+import UIkit from 'uikit';
+import Icons from 'uikit/dist/js/uikit-icons';
+
+UIkit.use(Icons);
 
 // Import local files
 //

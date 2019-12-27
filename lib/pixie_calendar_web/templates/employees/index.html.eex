@@ -2,7 +2,10 @@
   <div class="uk-width-expand">
     <div class="uk-card uk-card-default uk-card-body">
       <h1 class="uk-heading-small">Employees</h1>
-      <a href="<%= Routes.employees_path(@conn, :new) %>" class="uk-button uk-button-primary">Add new employee</a>
+      <a href="<%= Routes.employees_path(@conn, :new) %>" class="uk-button uk-button-primary">
+        <span uk-icon="icon: plus"></span>
+        Add new employee
+      </a>
       <table class="uk-table uk-table-hover uk-table-divider">
         <thead>
           <tr>
@@ -21,8 +24,12 @@
                 <%= e.position %>
               </td>
               <td>
-                <%= link "Edit", to: Routes.employees_path(@conn, :edit, e.id), class: "uk-button uk-button-default" %>
-                <%= link "Add gap", to: Routes.employees_gaps_path(@conn, :new, e.id), class: "uk-button uk-button-primary" %>
+                <%= link to: Routes.employees_path(@conn, :edit, e.id), class: "uk-button uk-button-default" do %>
+                  <span uk-icon="icon: nut"></span>
+                <% end %>
+                <%= link to: Routes.employees_gaps_path(@conn, :new, e.id), class: "uk-button uk-button-primary" do %>
+                  <span uk-icon="icon: plus"></span>
+                <% end %>
               </td>
             </tr>
           <% end %>

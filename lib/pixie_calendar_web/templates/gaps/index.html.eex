@@ -1,1 +1,42 @@
-Index Gaps
+<div uk-grid>
+  <div class="uk-width-expand">
+    <div class="uk-card uk-card-default uk-card-body">
+      <h1 class="uk-heading-small">Gaps</h1>
+      <table class="uk-table uk-table-hover uk-table-divider">
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Reason</th>
+            <th>Start at:</th>
+            <th>Ends at:</th>
+            <th>Duration (days)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <%= for g <- @gaps do %>
+            <tr>
+              <td>
+                <%= g.title %>
+              </td>
+              <td>
+                <%= g.reason %>
+              </td>
+              <td>
+                <%= humanize_date(g.start_date) %>
+              </td>
+              <td>
+                <%= humanize_date(g.end_date) %>
+              </td>
+              <th>
+                <%= duration(g.end_date, g.start_date) %>
+              </th>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+
+

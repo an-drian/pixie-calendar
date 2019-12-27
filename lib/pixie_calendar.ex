@@ -51,8 +51,11 @@ defmodule PixieCalendar do
     |> @repo.insert()
   end
 
-  def get_gaps_by() do
-
+  def get_gaps_by_employee_id(employee_id) do
+    query = from g in "gaps",
+      where: g.employees_id == ^employee_id,
+      select: [:title, :reason, :start_date, :end_date]
+    @repo.all(query)
   end
 
   def new_gap,  do: Gap.changeset(%Gap{})
