@@ -8,11 +8,20 @@ defmodule PixieCalendar.Users.User do
       password_min_length: 6,
       password_max_length: 4096
 
+  use Pow.Extension.Ecto.Schema,
+    extensions: [PowPersistentSession]
+
   schema "users" do
     pow_user_fields()
 
     has_many :gaps, PixieCalendar.Gaps.Gap
 
     timestamps()
+  end
+
+  def changeset(user_or_changeset, attrs) do
+    user_or_changeset
+    |> pow_changeset(attrs)
+    |> pow_extension_changeset(attrs)
   end
 end

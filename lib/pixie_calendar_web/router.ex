@@ -2,6 +2,8 @@ defmodule PixieCalendarWeb.Router do
   use PixieCalendarWeb, :router
 
   use Pow.Phoenix.Router
+  use Pow.Extension.Phoenix.Router,
+    extensions: [PowPersistentSession]
 
   pipeline :protected do
     plug Pow.Plug.RequireAuthenticated,

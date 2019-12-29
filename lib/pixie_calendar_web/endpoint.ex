@@ -43,6 +43,7 @@ defmodule PixieCalendarWeb.Endpoint do
     signing_salt: "Yykx83d3"
 
   plug Pow.Plug.Session, otp_app: :pixie_calendar
+  plug PowPersistentSession.Plug.Cookie
 
   plug PixieCalendarWeb.Router
 end

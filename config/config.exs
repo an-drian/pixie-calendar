@@ -32,5 +32,6 @@ import_config "#{Mix.env()}.exs"
 config :pixie_calendar, :pow,
     user: PixieCalendar.Users.User,
     repo: PixieCalendar.Repo,
-    web_module: PixieCalendarWeb
-
+    web_module: PixieCalendarWeb,
+    extensions: [PowPersistentSession],
+    controller_callbacks: Pow.Extension.Phoenix.ControllerCallbacks

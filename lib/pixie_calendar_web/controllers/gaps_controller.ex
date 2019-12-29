@@ -5,7 +5,6 @@ defmodule PixieCalendarWeb.GapsController do
     { int_id, _ } = Integer.parse(employees_id)
     gaps = PixieCalendar.get_gaps_by_employee_id(int_id)
 
-    IO.inspect(gaps)
     render(conn, "index.html", %{ gaps: gaps })
   end
 
